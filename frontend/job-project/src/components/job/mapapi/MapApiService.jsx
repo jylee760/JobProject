@@ -29,21 +29,20 @@ export function Map({latitude, longitude,destLat,destLong}){
         })
         const directionsService = new google.maps.DirectionsService();
 
-        // Create a DirectionsRenderer object to display the route
+       
         const directionsRenderer = new google.maps.DirectionsRenderer();
         directionsRenderer.setMap(map);
 
-        // Define the request
+       
         const request = {
           origin: youMarker.getPosition(),
           destination: destMarker.getPosition(),
-          travelMode: google.maps.TravelMode.DRIVING, // You can change this to WALKING, BICYCLING, or TRANSIT
+          travelMode: google.maps.TravelMode.DRIVING,
         };
 
-        // Pass the request to the route method
+      
         directionsService.route(request, (result, status) => {
           if (status == google.maps.DirectionsStatus.OK) {
-            // Display the route on the map
             directionsRenderer.setDirections(result);
             setTimeEst(result.routes[0].legs[0].duration);
             console.log(result.routes[0].legs[0].duration);
